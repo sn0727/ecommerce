@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-
+import { useDispatch } from 'react-redux';
+import { add } from '../app/slice/ProductSlice';
 const Cart = () => {
 
   const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
 
   // API calling funtion
   const url = 'https://fakestoreapi.com/products'
@@ -22,6 +24,10 @@ const Cart = () => {
       });
   }, [])
 
+  const AddTo = (ProductId) => {
+    dispatch(add(ProductId))
+  } 
+
 
   return (
     <div className='container'>
@@ -33,13 +39,13 @@ const Cart = () => {
 
           product.map((items, index) => (
             <div className='col-12 col-md-4 col-lg-4' id={index}>
-              <div className="card mb-3" >
+              <div className="card mb-3" id={index}>
                 <img className="card-img-top" src={items.image} style={{ maxWidth: '300px', margin: 'auto', height: '220px', objectFit: 'contain' }} alt={''} />
                 <div className="card-body">
                   <h5 className="card-title">{items.title}</h5>
                   <p className="card-text">{items.description}</p>
                   <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                  <button type='button' className='btn btn-primary'>Add To Cart</button>
+                  <button type='button' onClick={()=>AddTo(items)} className='btn btn-primary'>Add To Cart</button>
                 </div>
               </div>
 

@@ -1,9 +1,9 @@
 import React from 'react'
-
+import Cart from './Cart'
 const Home = () => {
   return (
     <div>
-      Home
+      <Cart />
     </div>
   )
 }

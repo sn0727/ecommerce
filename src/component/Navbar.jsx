@@ -1,7 +1,11 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+
+  const productItmes = useSelector((state) => state.product);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className='container'>
@@ -15,10 +19,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/cart">Cart</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/cart-list">0</NavLink>
+              <NavLink className="nav-link" to="/cart-list">Cart {productItmes.length}</NavLink>
             </li>
           </ul>
         </div>
